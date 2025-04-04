@@ -1,41 +1,41 @@
 {
   "intents":[
     {
-      "tag": "Capital", 
-      "prompt": ["What is the capital of Australia?"],
-      "response": ["Canberra"],
+      "tag": "capital", 
+      "prompt": ["What is the Capital of Australia?","what is capital of australia?"],
+      "response": ["Capital of Australia is Canberra"],
       "context_set": ""
     },
     {
       "tag": "Cities",
-      "prompt": ["Which are major cities in Australia,Which are big cities in Australia?"],
+      "prompt": ["Which are major cities in Australia","Which are big cities in Australia?"],
       "response": ["Major cities in Australia are Sydney,Melbourne and Brisbane"],
       "context_set": ""
     },
     {
         "tag": "Weather",
-        "prompt": ["How is the weather in Australia?,Which seasons does australia have?, Australian Weather?"],
+        "prompt": ["How is the weather in Australia?","Which seasons does australia have?", "Australian Weather?"],
         "response": ["Australia has three major seasons 1.Summer 2.Winter 3.Rainy"],
         "context_set": ""
       },
 
       {
         "tag": "Currency",
-        "prompt": ["What is the currency of Australia?,, Australian Currency?"],
+        "prompt": ["What is the currency of Australia?"," Australian Currency?"],
         "response": ["Australia Dollar is the official Currency  of Australia"],
         "context_set": ""
       },
 
       {
         "tag": "languages",
-        "prompt": ["Which is official language of Australia?, Australian language?,languages"],
+        "prompt": ["Which is official language of Australia?", "Australian language?","languages"],
         "response": ["English is the official and widely spoken  language of Australia"],
         "context_set": ""
       },
 
       {
         "tag": "Sports",
-        "prompt": ["Which is national sport of Australia?, Australian Sports?"],
+        "prompt": ["Which is national sport of Australia?", "Australian Sports?"],
         "response":[ "National sport of Australia is Australian Ruby which is called footsy,cricket and  hockey are played widely"],
         "context_set": ""
         
@@ -43,7 +43,7 @@
 
       {
         "tag": "population",
-        "prompt": ["Which is population of Australia?, Australian population?,Population"],
+        "prompt": ["What is population of Australia?", "Australian population?","Population"],
         "response":[ "Population of australia as of 2025 1st of january is 20.45 million"],
         "context_set": ""
         

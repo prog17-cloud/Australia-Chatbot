@@ -4,40 +4,31 @@ import streamlit as st
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-
-
-
 intents = json.load(open('intents.json'))
-tags=[]
-prompts=[]
+tags = []
+prompts = []
 
 for intent in intents['intents']:
     for p in intent['prompt']:
         prompts.append(p)
         tags.append(intent['tag'])
-    
 
 vector = TfidfVectorizer()
-prompt_scaled = vector.fit_transform(prompts)   
+prompt_scaled = vector.fit_transform(prompts)
 
-
-#building model
-
+# building model
 Bot = LogisticRegression(max_iter=100000)
-Bot.fit(prompt_scaled,tags)
+Bot.fit(prompt_scaled, tags)
 
-
-#testing the model
-
+# testing the model
 def ChatBot(input_message):
-     input_message = vector.transform([input_message])
-     pred_tag = Bot.predict(input_message)[0]
+    input_message = vector.transform([input_message])
+    pred_tag = Bot.predict(input_message)[0]
 
-     for intent in intents['intents']:
+    for intent in intents['intents']:
         if intent['tag'] == pred_tag:
-             response = random.choice(intent['response'])
-             return response
- 
+            response = random.choice(intent['response'])
+            return response
 
 st.markdown(
     """
@@ -55,11 +46,36 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
+# Prepopulated questions
+prepopulated_questions = [
+    "What is the capital of Australia?",
+    "Which are major cities in Australia?",
+    "How is the weather in Australia?",
+    "What is the currency of Australia?",
+    "Which is official language of Australia?",
+    "Which is national sport of Australia?",
+    "What is population of Australia?",
+    "Which is national animal of Australia?",
+    "Which are international airports of Australia?",
+    "hi",
+    "bye",
+    "who are you?"
+]
+
+# Create buttons for prepopulated questions
+cols = st.columns(3) # create 3 columns for better layout
+for i, question in enumerate(prepopulated_questions):
+    if cols[i % 3].button(question): # place buttons in columns
+        p = question
+        st.chat_message("user").markdown(p)
+        st.session_state.messages.append({"role": "user", "content": p})
+
+        response = f"Kristy: " + ChatBot(p)
+        with st.chat_message("assistant"):
+            st.markdown(response)
+        st.session_state.messages.append({"role": "assistant", "content": response})
+
 # React to user input
-st.markdown(
-    "<p style='color: purple; font-size: 18px;'>I am your assistant Kristy, How may I help you?</p>",
-    unsafe_allow_html=True,
-)
 
 
 if p := st.chat_input("Enter your message here"):
@@ -68,7 +84,7 @@ if p := st.chat_input("Enter your message here"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": p})
 
-    response = f" Kristy :"+ ChatBot(p)
+    response = f"Kristy: " + ChatBot(p)
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
         st.markdown(response)
