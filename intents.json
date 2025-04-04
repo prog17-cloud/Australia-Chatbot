@@ -34,8 +34,8 @@
       },
 
       {
-        "tag": "Sports",
-        "prompt": ["Which is national sport of Australia?", "Australian Sports?"],
+        "tag": "sport",
+        "prompt": ["Which is national sport of Australia?", "Australian sport?","sports"],
         "response":[ "National sport of Australia is Australian Ruby which is called footsy,cricket and  hockey are played widely"],
         "context_set": ""
         
